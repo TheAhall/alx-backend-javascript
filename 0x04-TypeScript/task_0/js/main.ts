@@ -1,67 +1,43 @@
 interface Student {
-  firstName: string,
-  lastName: string,
-  age: number,
-  location: string
+  firstName: string;
+  lastName: string;
+  age: number;
+  location: string;
 }
 
 const student1: Student = {
-  firstName: 'Paul',
-  lastName: 'Jerry',
-  age: 27,
-  location: 'Nigeria'
-}
+  firstName: "John",
+  lastName: "Doe",
+  age: 20,
+  location: "New York"
+};
 
 const student2: Student = {
-  firstName: 'Jerry',
-  lastName: 'Parkerson',
-  age: 28,
-  location: 'Edo state'
-}
+  firstName: "Jane",
+  lastName: "Smith",
+  age: 22,
+  location: "Los Angeles"
+};
 
-const studentList: Array<Student> = [student1, student2];
+const studentsList: Student[] = [student1, student2];
 
-const body: HTMLBodyElement = document.getElementsByTagName("body")[0];
-const table: HTMLTableElement = document.createElement('table');
-const thead: HTMLTableSectionElement = document.createElement('thead');
-const th1: HTMLTableCellElement = document.createElement('th');
-const th2: HTMLTableCellElement = document.createElement('th');
+// Creating the table and appending it to the body
+const table = document.createElement('table');
+document.body.appendChild(table);
 
-th1.innerText = 'First Name';
-th2.innerText = 'Location';
-th1.style.border = '1px solid gray';
-th2.style.border = '1px solid gray';
-th1.style.padding = '.5rem';
-th2.style.padding = '.5rem';
-table.style.border = '1px solid gray';
-table.style.borderCollapse = 'collapse';
+// Adding table headers
+const headerRow = table.insertRow();
+const firstNameHeader = headerRow.insertCell();
+const locationHeader = headerRow.insertCell();
+firstNameHeader.textContent = 'First Name';
+locationHeader.textContent = 'Location';
 
-
-
-thead.append(th1);
-thead.append(th2);
-
-table.append(thead);
-
-
-studentList.forEach((student) => {
-  const row: HTMLTableRowElement = document.createElement('tr');
-
-  const column1: HTMLTableCellElement = document.createElement('td');
-  const column2: HTMLTableCellElement = document.createElement('td');
-
-  column1.innerText = student.firstName;
-  column2.innerText = student.lastName;
-
-  column1.style.border = '1px solid gray';
-  column2.style.border = '1px solid gray';
-  column1.style.padding = '.5rem';
-  column2.style.padding = '.5rem';
-
-  row.append(column1);
-  row.append(column2)
-
-  table.append(row);
+// Adding student data to the table
+studentsList.forEach(student => {
+  const row = table.insertRow();
+  const firstNameCell = row.insertCell();
+  const locationCell = row.insertCell();
+  firstNameCell.textContent = student.firstName;
+  locationCell.textContent = student.location;
 });
 
-body.append(table)
